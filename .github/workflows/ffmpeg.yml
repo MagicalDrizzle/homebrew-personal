@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  update-formula:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update formula
+        run: |
+          mkdir -p Formula
+
+          sh ./.github/scripts/update-ffmpeg.sh
+
+          git config --global user.name 'Mizuki Nguyen'
+          git config --global user.email '49761211+MagicalDrizzle@users.noreply.github.com'
+          git commit -m 'Updated FFmpeg to $VERSION'
+          git push origin master

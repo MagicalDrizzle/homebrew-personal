@@ -1,5 +1,7 @@
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '00 15 * * *'  # 15:00 UTC everyday
 
 jobs:
   update-formula:

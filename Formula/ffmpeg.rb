@@ -1,5 +1,5 @@
 class Ffmpeg < Formula
-  desc "FFmpeg Linux builds by BtbN"
+  desc "Linux, git master, GPL, shared builds of FFmpeg by BtbN"
   homepage "https://github.com/BtbN/FFmpeg-Builds"
   url "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl-shared.tar.xz"
   version "2025-12-06-12-54"
@@ -10,7 +10,7 @@ class Ffmpeg < Formula
 
   def install
     if OS.linux?
-      man.install Dir["man"]
+      man.install man
       prefix.install Dir["*"]
     else
       odie "This package is only available on Linux."

@@ -7,8 +7,7 @@ class Fienode < Formula
   license "MIT"
 
   def install
-    bin.install "fienode-linux-amd64"
-    mv(bin/"fienode-linux-amd64", bin/"fienode")
+    bin.install "fienode-linux-amd64" => "fienode"
   end
 
   test do

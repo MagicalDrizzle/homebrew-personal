@@ -1,9 +1,9 @@
-class Ffmpeg < Formula
-  desc "Linux, git master, GPL, shared builds of FFmpeg by BtbN"
+class FfmpegStatic < Formula
+  desc "Linux, git master, GPL, static builds of FFmpeg by BtbN"
   homepage "https://github.com/BtbN/FFmpeg-Builds"
-  url "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl-shared.tar.xz"
-  version "2025-12-15-12-56"
-  sha256 "91e3ef2b72a5a282cdd926994271835fcf6fc9e1a15b3aca1f100c8c768f1e91"
+  url "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz"
+  version "2025-12-16-12-59"
+  sha256 "d566ea72f8eb212a9890507887e14c602b3326745a49367e524e7bd4534d1ecd"
   license "MIT"
 
   conflicts_with "ffmpeg", because: "alternate version of ffmpeg"
@@ -18,8 +18,6 @@ class Ffmpeg < Formula
   end
 
   test do
-    ENV["LD_LIBRARY_PATH"] = lib.to_s
-
     # Create a 5 second test MP4
     mp4out = testpath/"video.mp4"
     system bin/"ffmpeg", "-filter_complex", "testsrc=rate=1:duration=5", mp4out

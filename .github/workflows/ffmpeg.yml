@@ -18,7 +18,9 @@ jobs:
         uses: Homebrew/actions/git-user-config@main
 
       - name: Checkout
-        uses: actions/checkout@v6
+        run: |
+          git clone https://github.com/MagicalDrizzle/homebrew-personal.git
+          cd homebrew-personal
 
       - name: Update formula
         run: |

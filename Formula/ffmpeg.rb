@@ -10,7 +10,7 @@ class Ffmpeg < Formula
 
   def install
     if OS.linux?
-      man.install Dir["man"]
+      man.install man
       prefix.install Dir["*"]
     else
       odie "This package is only available on Linux."

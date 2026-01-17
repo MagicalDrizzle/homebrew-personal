@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -eux
 
 if VERSION=$(brew livecheck --newer-only magicaldrizzle/personal/ffmpeg-static | grep -Eo "[0-9-]+$"); then
   SHASUM=$(

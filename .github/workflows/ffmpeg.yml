@@ -17,10 +17,8 @@ jobs:
       - name: Set up git
         uses: Homebrew/actions/git-user-config@main
 
-      - uses: actions/checkout@v6
-        with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          persist-credentials: false
+      - name: Checkout
+        uses: actions/checkout@v6
 
       - name: Update formula
         run: |

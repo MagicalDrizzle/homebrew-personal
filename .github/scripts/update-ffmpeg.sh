@@ -6,9 +6,6 @@ if VERSION=$(brew livecheck --newer-only magicaldrizzle/personal/ffmpeg | grep -
     grep -F ffmpeg-master-latest-linux64-gpl-shared.tar.xz | \
     awk '{ print $1 }'
   )
-
-  sed -ri "s/version \"[0-9-]+\"/version \"$VERSION\"/" "${0%/*}/../../Formula/ffmpeg.rb"
-  sed -ri "s/sha256 \"[0-9a-f]+\"/sha256 \"$SHASUM\"/" "${0%/*}/../../Formula/ffmpeg.rb"
-else
-  exit
+  sed -Ei "s/version \"[0-9-]+\"/version \"$VERSION\"/" "$(dirname "$0")/../../Formula/ffmpeg.rb"
+  sed -Ei "s/sha256 \"[0-9a-f]+\"/sha256 \"$SHASUM\"/" "$(dirname "$0")/../../Formula/ffmpeg.rb"
 fi

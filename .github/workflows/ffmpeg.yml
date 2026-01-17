@@ -26,8 +26,9 @@ jobs:
           mkdir -p Formula
 
           sh ./.github/scripts/update-ffmpeg.sh
-
+          sh ./.github/scripts/update-ffmpeg-static.sh
           git config --global user.name 'Mizuki Nguyen'
           git config --global user.email '49761211+MagicalDrizzle@users.noreply.github.com'
-          git commit -m 'Updated FFmpeg to $VERSION'
-          git push origin master
+          git add Formula/ffmpeg.rb Formula/ffmpeg-static.rb
+          git commit -m 'Updated FFmpeg'
+          git push origin main

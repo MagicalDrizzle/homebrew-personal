@@ -7,6 +7,9 @@ on:
 jobs:
   update-formula:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -22,7 +25,6 @@ jobs:
 
       - name: Update formula
         run: |
-          cd ${GITHUB_WORKSPACE}
           mkdir -p Formula
           ./.github/scripts/update-ffmpeg.sh
           ./.github/scripts/update-ffmpeg-static.sh

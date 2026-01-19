@@ -1,0 +1,49 @@
+name: update ffmpeg
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '00 15 * * *'  # 15:00 UTC everyday
+
+jobs:
+  update-formula:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up git
+        uses: Homebrew/actions/git-user-config@main
+
+      - name: Update formula
+        run: |
+          set -eux
+          mkdir -p Formula
+          VERSION=$(brew livecheck -q --json --newer-only magicaldrizzle/personal/ffmpeg-static | jq -r '.[0].version.latest')
+          if [ "$VERSION" != "null" ]; then
+            SHASUM=$(
+              curl -sL https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/checksums.sha256 | \
+              grep -F ffmpeg-master-latest-linux64-gpl-shared.tar.xz | \
+              awk '{ print $1 }'
+            )
+            SHASUM_STATIC=$(
+              curl -sL https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/checksums.sha256 | \
+              grep -F ffmpeg-master-latest-linux64-gpl.tar.xz | \
+              awk '{ print $1 }'
+            )
+            sed -Ei "s#version \".+\"#version \"$VERSION\"#;s#sha256 \".+\"#sha256 \"$SHASUM\"#" "./Formula/ffmpeg.rb"
+            sed -Ei "s#version \".+\"#version \"$VERSION\"#;s#sha256 \".+\"#sha256 \"$SHASUM_STATIC\"#" "./Formula/ffmpeg-static.rb"
+            git add ./Formula/ffmpeg.rb ./Formula/ffmpeg-static.rb
+            git commit -m 'Updated FFmpeg'
+            git push origin main
+          else
+            echo "No new version upstream."
+          fi

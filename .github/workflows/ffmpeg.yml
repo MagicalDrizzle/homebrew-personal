@@ -17,8 +17,6 @@ jobs:
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up git
         uses: Homebrew/actions/git-user-config@main
@@ -42,7 +40,7 @@ jobs:
             sed -Ei "s#version \".+\"#version \"$VERSION\"#;s#sha256 \".+\"#sha256 \"$SHASUM\"#" "./Formula/ffmpeg.rb"
             sed -Ei "s#version \".+\"#version \"$VERSION\"#;s#sha256 \".+\"#sha256 \"$SHASUM_STATIC\"#" "./Formula/ffmpeg-static.rb"
             git add ./Formula/ffmpeg.rb ./Formula/ffmpeg-static.rb
-            git commit -m 'Updated FFmpeg'
+            git commit -m 'Updated FFmpeg to $VERSION'
             git push origin main
           else
             echo "No new version upstream."

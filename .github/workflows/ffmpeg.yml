@@ -42,7 +42,7 @@ jobs:
             sed -Ei "s#version \".+\"#version \"$VERSION\"#;s#sha256 \".+\"#sha256 \"$SHASUM\"#" "./Formula/ffmpeg.rb"
             sed -Ei "s#version \".+\"#version \"$VERSION\"#;s#sha256 \".+\"#sha256 \"$SHASUM_STATIC\"#" "./Formula/ffmpeg-static.rb"
             git add ./Formula/ffmpeg.rb ./Formula/ffmpeg-static.rb
-            git commit -m 'Updated FFmpeg to $VERSION'
+            git commit -m "Updated FFmpeg to $VERSION"
             git push origin main
           else
             echo "No new version upstream."

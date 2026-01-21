@@ -2,8 +2,8 @@ class FfmpegStatic < Formula
   desc "Linux, git master, GPL, static builds of FFmpeg by BtbN"
   homepage "https://github.com/BtbN/FFmpeg-Builds"
   url "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz"
-  version "2026-01-20-13-01"
-  sha256 "8dbc3a85eb171d76019bc0cf3babff28c8587e4a08eba5ff4ffc620329873896"
+  version "2026-01-21-12-57"
+  sha256 "5d5a7e32385efb4ea5772df2fb0a255805c470fdb5c83f1dfb8abb2f85c4775a"
   license "MIT"
 
   conflicts_with "ffmpeg", because: "alternate version of ffmpeg"

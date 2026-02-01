@@ -2,8 +2,8 @@ class Ffmpeg < Formula
   desc "Linux, git master, GPL, shared builds of FFmpeg by BtbN"
   homepage "https://github.com/BtbN/FFmpeg-Builds"
   url "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl-shared.tar.xz"
-  version "2026-01-31-12-57"
-  sha256 "7b0a3774c1d968d28de771bf89f817039a2f80af7be7489aad79caea8997ac25"
+  version "2026-02-01-13-00"
+  sha256 "6d619aec0cc697cbfc3534cbc1a065e45fd07fe732d2346be00b5547687418fd"
   license "MIT"
 
   conflicts_with "ffmpeg", because: "alternate version of ffmpeg"
